@@ -8,18 +8,17 @@ var cookie = require('cookie-parser');
 
 // Connexion admin/utilisateur : OK
 module.exports.connexion = function (req, res) {
-
     user.findOne({where: {nom: req.body.username, mdp: req.body.password}}).then(function (user) {
         logger.info(user);
-        session.user = {nom: user.dataValues.nom, privilege: user.dataValues.privilege};
+        session.user = {nom: user.dataValues.nom, privilege: user.dataValues.privilege, mdp : user.dataValues.password};
         //res.cookie( "name" ,req.session.user ,{ maxAge: 1000 * 60 * 10, httpOnly: false });
 
         if (user.dataValues.privilege === "admin") {
-            res.render('profil_admin', {name: session.user.nom, privilege: session.user.privilege});
+            res.render('profil_admin', {name: session.user.nom, privilege: session.user.privilege, mdp : session.user.mdp});
 
         }
         else {
-            res.render('profil', {name: session.user.nom, privilege: session.user.privilege});
+            res.render('profil', {name: session.user.nom, privilege: session.user.privilege, mdp : session.user.mdp});
 
         }
     }).catch(function (error) {
@@ -33,11 +32,11 @@ module.exports.inscription = function (req, res) {
 
     user.findOne({where: {nom: req.body.username, mdp: req.body.password}}).then(function (user) {
         //logger.info(user);
-        if (user.dataValues.nom === '' || user.dataValues.privilege == '') {
+        if (user.dataValues.nom === '' || user.dataValues.password === '') {
             res.render('inscription');
         }
         else {
-            session.user = {nom: user.dataValues.nom, privilege: user.dataValues.privilege};
+            session.user = {nom: user.dataValues.nom, privilege: user.dataValues.privilege, mdp : user.dataValues.password};
             res.render('profil', {name: session.user.nom, privilege: session.user.privilege});
         }
     }).catch(function (error) {
@@ -84,12 +83,12 @@ module.exports.deleteAccount = function (req, res) {
     })
 };
 
-// Modification donnees Utilisateur : PAS OK
+// Modification donnees Utilisateur : OK
 module.exports.modifierUtilisateur = function (req, res) {
-    user.findOne({where: {nom: session.user.nom, mdp: session.user.mdp}}).then(function (user) {
+    user.findOne({where: {nom: session.user.nom}}).then(function (user) {
         logger.info(user);
-        console.log(req.body.new_username + ' ' +req.body.new_password);
-        user.update({nom: req.body.new_username , mdp : req.body.new_password}, { where :{nom : session.user.nom, mdp: session.user.mdp } }).then(function (user) {
+        console.log(req.body.new_username + ' ' +req.body.new_password +' ' + user.mdp+' '+ user.nom);
+        user.update({nom: req.body.new_username , mdp : req.body.new_password}, { where :{nom : user.nom, mdp: user.mdp } }).then(function (user) {
             logger.info(user);
             session.user = {nom: user.dataValues.nom, privilege: user.dataValues.privilege};
             res.render('profil', {name: user.nom, privilege: user.privilege});
