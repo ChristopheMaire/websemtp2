@@ -89,12 +89,6 @@ app.post('/deleteItem', produitController.suppProduit);
 app.post('/produits', produitController.recupProduit);
 
 
-// 3
-/*app.get('/toto/:user/:pass', function(req, res){
-    console.log(req.params);
-    res.render('profil', { name: 'Tobi' });
-});*/
-
 
 app.listen(1313);
 

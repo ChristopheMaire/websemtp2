@@ -84,12 +84,12 @@ module.exports.deleteAccount = function (req, res) {
     })
 };
 
-
+// Modification donnees Utilisateur : PAS OK
 module.exports.modifierUtilisateur = function (req, res) {
-    user.findOne({where: {nom: session.user.nom, mdp: req.body.new_password}}).then(function (user) {
+    user.findOne({where: {nom: session.user.nom, mdp: session.user.mdp}}).then(function (user) {
         logger.info(user);
         console.log(req.body.new_username + ' ' +req.body.new_password);
-        user.update({nom: req.body.new_username , mdp : req.body.new_password}).then(function (user) {
+        user.update({nom: req.body.new_username , mdp : req.body.new_password}, { where :{nom : session.user.nom, mdp: session.user.mdp } }).then(function (user) {
             logger.info(user);
             session.user = {nom: user.dataValues.nom, privilege: user.dataValues.privilege};
             res.render('profil', {name: user.nom, privilege: user.privilege});
