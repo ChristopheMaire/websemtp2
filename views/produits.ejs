@@ -1,0 +1,34 @@
+<% var title = 'Page des Produits' %>
+
+<% include head %>
+
+<h1>Liste des produits :  </h1>
+
+
+<h2>Liste des produits disponibles : </h2>
+
+<p>
+    <form method="post" action="/produits">
+        <input type="submit" value="Refresh">
+    </form>
+</p>
+
+<% prod.forEach(function(prod){ %>
+  <table>
+        <tr>
+            <td> Nom produit </td>
+            <td> <%= prod.nom %></td> </br>
+        </tr>
+        <tr>
+            <td> Prix produit </td>
+            <td> <%= prod.prix %> €</td> </br>
+        </tr>
+        <tr>
+            <td> Quantité disponible </td>
+            <td> <%= prod.quantite %></td> </br>
+        </tr>
+  </table>
+<% }); %>
+
+
+<% include foot %>

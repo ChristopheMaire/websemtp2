@@ -1,0 +1,26 @@
+<% var title = 'Formulaire login' %>
+
+<h1>Login</h1>
+
+<form method="post" action="/login">
+  <p>
+    <label>Entrer votre nom : </label>
+    <input type="text" name="username">
+  <p/>
+  <p>
+    <label>Entrer votre mdp : </label>
+    <input type="text" name="password">
+  </p>
+  <p>
+    <input type="submit" value="Login">
+  </p>
+
+</form>
+<form method="get" action="/inscription">
+  <p>
+    <input type="submit" value="Inscription">
+  </p>
+</form>
+
+
+<% include foot %>

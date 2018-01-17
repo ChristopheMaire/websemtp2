@@ -1,0 +1,83 @@
+<% var title = 'Page de Profil' %>
+<% include head %>
+
+<h1>Connecte en tant que <%= name %> </h1>
+
+<p>
+Accés au <a href="/produits">produit</a>
+</p>
+
+<p>
+    Bonjour <%=name%> votre statut : <%=privilege%>
+</p>
+
+
+<h2>Suppression compte perso : </h2>
+<form method="post" action="/deleteAccount">
+    <input type="submit" value="Supprimer">
+</form>
+
+<h2>Modification données utilisateur : </h2>
+<form method="post" action="/">
+    <p>
+        <label>Entrer un nouveau nom d'utilisateur : </label>
+        <input type="text" name="username">
+    <p/>
+    <p>
+        <label>Entrer un nouveau mot de passe d'utilisateur : </label>
+        <input type="text" name="password">
+    <p/>
+    <p>
+        <input type="submit" value="Appliquer modifications">
+    </p>
+</form>
+
+
+
+<h2>Suppression d'un compte quelconque : </h2>
+<form method="post" action="/deleteAccountAdmin">
+    <p>
+        <label>Entrer un nom à supprimer : </label>
+        <input type="text" name="username">
+    <p/>
+    <p>
+        <input type="submit" value="Supprimer le compte">
+    </p>
+</form>
+
+
+<h2>Ajouter Produit : </h2>
+<form method="post" action="/addItem">
+    <p>
+        <label>Entrer un nom de produit : </label> <input type="text" name="nom">
+    <p/>
+    <p>
+        <label>Entrer un prix : </label> <input type="text" name="prix">
+    <p/>
+    <p>
+        <label>Entrer une quantite: </label> <input type="text" name="quantite">
+    <p/>
+    <p>
+        <input type="submit" value="Ajouter produit">
+    </p>
+</form>
+
+<h2>Supprimer Produit par son nom: </h2>
+<form method="post" action="/deleteItem">
+    <p>
+        <label>Entrer le nom du produit : </label> <input type="text" name="nom_produit">
+    <p/>
+    <p>
+        <input type="submit" value="Supprimer produit">
+    </p>
+</form>
+
+
+<h2>Déconnexion : </h2>
+<form method="post" action="/logoutAccount">
+    <p>
+        <input type="submit" value="Deconnexion">
+    </p>
+</form>
+
+<% include foot %>

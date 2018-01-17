@@ -1,0 +1,45 @@
+<% var title = 'Page de Profil' %>
+<% include head %>
+
+<h1>Connecte en tant que <%= name %> </h1>
+
+<p>
+    <form method="get" action="/produits">
+        <input type="submit" value="liste produit">
+    </form>
+</p>
+
+<p>
+    Bonjour <%=name%> votre statut : <%=privilege%>
+</p>
+
+<h2>Suppression compte perso : </h2>
+<form method="post" action="/deleteAccount">
+    <input type="submit" value="Supprimer">
+</form>
+
+<h2>Modification données utilisateur : </h2>
+<form method="post" action="/modifUtil">
+    <p>
+        <label>Entrer un nouveau nom d'utilisateur : </label>
+        <input type="text" name="new_username">
+    <p/>
+    <p>
+        <label>Entrer un nouveau mot de passe d'utilisateur : </label>
+        <input type="text" name="new_password">
+    <p/>
+    <p>
+        <input type="submit" value="Appliquer modifications">
+    </p>
+</form>
+
+
+
+<h2>Déconnexion : </h2>
+<form method="post" action="/logoutAccount">
+    <p>
+        <input type="submit" value="Deconnexion">
+    </p>
+</form>
+
+<% include foot %>
