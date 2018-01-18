@@ -46,7 +46,7 @@ app.get('/profil', function (req, res) {
     if (req.session === undefined) {
         res.redirect('/login');
     }
-    else  {
+    else {
         res.render('profil', {name: session.user.nom, privilege: session.user.privilege});
     }
 });
@@ -75,7 +75,6 @@ app.post('/logoutAccount', userController.logoutAccount);
 app.post('/modifUtil', userController.modifierUtilisateur);
 
 
-
 /* -------------------------------------------------- */
 
 
@@ -87,7 +86,6 @@ app.post('/deleteItem', produitController.suppProduit);
 
 // Route -> Affichage produit
 app.post('/produits', produitController.recupProduit);
-
 
 
 app.listen(1313);

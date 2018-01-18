@@ -1,21 +1,13 @@
 <% var title = 'Page de Profil' %>
 <% include head %>
 
-<h1>Connecte en tant que <%= name %> </h1>
+<h1> Bonjour <%= name %> votre statut : <%= privilege %>
+</h1>
 
 <p>
-Accés au <a href="/produits">produit</a>
+    Accés au <a href="/produits">produit</a>
 </p>
 
-<p>
-    Bonjour <%=name%> votre statut : <%=privilege%>
-</p>
-
-
-<h2>Suppression compte perso : </h2>
-<form method="post" action="/deleteAccount">
-    <input type="submit" value="Supprimer">
-</form>
 
 <h2>Modification données utilisateur : </h2>
 <form method="post" action="/">
@@ -33,11 +25,10 @@ Accés au <a href="/produits">produit</a>
 </form>
 
 
-
-<h2>Suppression d'un compte quelconque : </h2>
+<h2>Suppression d'un compte utilisateur : </h2>
 <form method="post" action="/deleteAccountAdmin">
     <p>
-        <label>Entrer un nom à supprimer : </label>
+        <label>Entrer un nom d'utilisateur à supprimer : </label>
         <input type="text" name="username">
     <p/>
     <p>

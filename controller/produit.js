@@ -12,12 +12,12 @@ module.exports.ajoutProduit = function (req, res) {
     }).then(function (produit) {
         console.log('Trouvé');
         logger.info(produit);
-        res.render('profil_admin', { name : session.user.nom, privilege : session.user.privilege });
+        res.render('profil_admin', {name: session.user.nom, privilege: session.user.privilege});
     }).catch(function (error) {
         produit.create({nom: req.body.nom, quantite: req.body.quantite, prix: req.body.prix}).then(function (produit) {
             logger.info(produit);
             console.log('Crée');
-            res.render('profil_admin', { name : session.user.nom, privilege : session.user.privilege });
+            res.render('profil_admin', {name: session.user.nom, privilege: session.user.privilege});
 
         })
     })
@@ -31,18 +31,18 @@ module.exports.suppProduit = function (req, res) {
     }).then(function (produit) {
         produit.destroy({where: {nom: req.body.nom_produit}});
         console.log('Trouvé et détruit');
-        res.render('profil_admin', { name : session.user.nom, privilege : session.user.privilege });
+        res.render('profil_admin', {name: session.user.nom, privilege: session.user.privilege});
 
     }).catch(function (error) {
         console.log('Plus de produit');
-        res.render('profil_admin', { name : session.user.nom, privilege : session.user.privilege });
+        res.render('profil_admin', {name: session.user.nom, privilege: session.user.privilege});
 
     })
 };
 
 // Recupération des produits : OK
-module.exports.recupProduit = function ( req,res) {
+module.exports.recupProduit = function (req, res) {
     produit.findAll().then(function (produit) {
-        res.render('produits', {prod : produit, taille : produit.length});
+        res.render('produits', {prod: produit, taille: produit.length});
     });
 };

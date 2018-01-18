@@ -1,16 +1,12 @@
 <% var title = 'Page de Profil' %>
 <% include head %>
 
-<h1>Connecte en tant que <%= name %> </h1>
+<h1>Bonjour <%= name %>  </h1>
 
 <p>
-    <form method="get" action="/produits">
-        <input type="submit" value="liste produit">
-    </form>
-</p>
-
-<p>
-    Bonjour <%=name%> votre statut : <%=privilege%>
+<form method="get" action="/produits">
+    <input type="submit" value="liste produit">
+</form>
 </p>
 
 <h2>Suppression compte perso : </h2>
@@ -32,7 +28,6 @@
         <input type="submit" value="Appliquer modifications">
     </p>
 </form>
-
 
 
 <h2>Déconnexion : </h2>
